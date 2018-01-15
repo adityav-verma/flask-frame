@@ -1,0 +1,13 @@
+class BaseConfig:
+    APP_NAME = 'app'
+
+    DEBUG = False
+    TESTING = False
+
+
+class DefaultConfig(BaseConfig):
+    DEBUG = True
+
+
+class TestConfig(BaseConfig):
+    TESTING = True
