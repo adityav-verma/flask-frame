@@ -1,0 +1,24 @@
+"""
+Contains various configurations.
+BaseConfig should contain data, that remains constant across environment
+DefaultConfig: development configurations
+TestConfig: testing configurations
+ProdConfig: production related configurations
+"""
+class BaseConfig:
+    APP_NAME = 'app'
+
+    DEBUG = False
+    TESTING = False
+
+
+class DefaultConfig(BaseConfig):
+    DEBUG = True
+
+
+class TestConfig(BaseConfig):
+    TESTING = True
+
+
+class ProdConfig(BaseConfig)
+    pass

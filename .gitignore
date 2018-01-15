@@ -1,5 +1,5 @@
 venv
-app/settings.py
+app/configs.py
 docker-compose.yml
 __pycache__
 *.pyc

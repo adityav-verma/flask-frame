@@ -1,1 +1,1 @@
-Flask-SQLAlchemy
+Flask>=0.12,<=0.13

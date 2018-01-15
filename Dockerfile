@@ -7,4 +7,4 @@ WORKDIR /www/app
 ENV UWSGI_INI /www/app/uwsgi.ini
 
 # Install dependencies
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.lock
