@@ -1,13 +1,5 @@
-FROM python:3.6-slim
+FROM tiangolo/uwsgi-nginx-flask:python3.6
 
-WORKDIR /www/app
-
-ADD . /www/app
+COPY ./app /app
 
 RUN pip install -r requirements.txt
-
-ENV APP_ENV production
-
-EXPOSE 80
-
-CMD ["python", "app.py"]
