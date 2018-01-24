@@ -2,5 +2,18 @@ version: '3'
 services:
   web:
     build: .
+    volumes:
+      - .:/www/app
+    depends_on:
+      - mysql
+    links:
+      - mysql
     ports:
-    - "8001:80"
+      - "8001:80"
+
+  mysql:
+      image: mysql/mysql-server:5.7
+      environment:
+        - MYSQL_ALLOW_EMPTY_PASSWORD=true
+        - MYSQL_DATABASE=flask_app
+        - MYSQL_ROOT_HOST=%
