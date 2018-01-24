@@ -33,5 +33,6 @@ def configure_app(app, config=None):
 def configure_blueprints(app):
     """Register all blueprints with the app"""
     from .api import api
-    for bp in [api]:
+    from .auth import auth
+    for bp in [api, auth]:
         app.register_blueprint(bp)
