@@ -13,9 +13,9 @@ class BaseConfig:
 
     # SQLAlchemy configs
     DB_HOST = 'mysql'
-    DB_NAME = '<DB_NAME>'
-    DB_USER = '<USERNAME>'
-    DB_PASS = '<PASSWORD>'
+    DB_NAME = 'flask_app'
+    DB_USER = 'root'
+    DB_PASS = ''
     SQLALCHEMY_DATABASE_URI = 'mysql://{}:{}@{}/{}'.format(
         DB_USER, DB_PASS, DB_HOST, DB_NAME
     )
