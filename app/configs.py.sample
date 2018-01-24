@@ -20,5 +20,5 @@ class TestConfig(BaseConfig):
     TESTING = True
 
 
-class ProdConfig(BaseConfig)
+class ProdConfig(BaseConfig):
     pass
