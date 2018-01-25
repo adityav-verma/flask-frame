@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from .configs import DefaultConfig
-from .extensions import db
+from .extensions import db, migrate
 
 # For import *
 __all__ = ['create_app']
@@ -38,6 +38,7 @@ def configure_db(app):
     Configure SQLAlchemy
     """
     db.init_app(app)
+    migrate.init_app(app, db)
 
 def configure_blueprints(app):
     """Register all blueprints with the app"""
