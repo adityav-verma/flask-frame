@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify
 
-api = Blueprint('api', __name__, url_prefix='/api')
+todo = Blueprint('todo', __name__, url_prefix='/todo')
 
-@api.route('/', methods=['GET'])
+@todo.route('/', methods=['GET'])
 def index():
     return jsonify({'message': 'Hello World'})
