@@ -11,6 +11,16 @@ class BaseConfig:
     DEBUG = False
     TESTING = False
 
+    # SQLAlchemy configs
+    DB_HOST = 'mysql'
+    DB_NAME = 'flask_app'
+    DB_USER = 'root'
+    DB_PASS = ''
+    SQLALCHEMY_DATABASE_URI = 'mysql://{}:{}@{}/{}'.format(
+        DB_USER, DB_PASS, DB_HOST, DB_NAME
+    )
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
 class DefaultConfig(BaseConfig):
     DEBUG = True
