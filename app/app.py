@@ -1,7 +1,7 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from .configs import DefaultConfig
 from .extensions import db, migrate
+from .api_flask import ApiFlask
+
 
 # For import *
 __all__ = ['create_app']
@@ -12,7 +12,7 @@ def create_app(config=None, app_name=None):
     if not app_name:
         app_name = DefaultConfig.APP_NAME
 
-    app = Flask(app_name)
+    app = ApiFlask(app_name)
 
     configure_app(app, config)
     configure_blueprints(app)
