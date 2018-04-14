@@ -1,6 +1,6 @@
 from app.utilities import ApiResult
 
-class AppException(object):
+class ApiException(Exception):
     def __init__(self, payload, message, status=400):
         self.payload = payload
         self.message = message
