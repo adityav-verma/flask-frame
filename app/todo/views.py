@@ -8,10 +8,17 @@ todo = Blueprint('todo', __name__, url_prefix='/todo')
 
 @todo.route('/', methods=['GET'])
 def index():
-    return ApiResult({'hello': 'world'})
+    return ApiResult(
+        payload={},
+        message='Hello from Python.. hzzzzz..'
+    )
 
 
 @todo.route('/', methods=['POST'])
 def new():
     todo = Todo.add('Yo!', 'Jessi Pinkman')
-    return jsonify({'Title': todo.title})
+    return ApiResult(
+        payload=todo.to_dict(),
+        message='Todo created!',
+        status=201
+    )

@@ -16,6 +16,13 @@ class Todo(db.Model):
         db.session.commit()
         return self
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'content': self.content
+        }
+
     @classmethod
     def add(cls, title, content):
         todo = cls(title=title, content=content)
