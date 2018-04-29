@@ -6,7 +6,7 @@ from .schemas import NewTodoSchema
 from .models.todo import Todo
 
 
-todo = Blueprint('todo', __name__, url_prefix='/todo')
+todo = Blueprint('todo', __name__, url_prefix='/api/todo')
 
 
 @todo.route('/', methods=['GET'])

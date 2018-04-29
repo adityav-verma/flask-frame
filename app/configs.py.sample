@@ -21,6 +21,8 @@ class BaseConfig:
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # Auth Configs
+    BCRYPT_ROUNDS = 12
 
 class DefaultConfig(BaseConfig):
     DEBUG = True
