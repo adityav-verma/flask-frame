@@ -1,5 +1,4 @@
-from flask import Blueprint, jsonify, request
-import json
+from flask import Blueprint, request
 
 from app.utilities import ApiResult
 from app.utilities.schema_validators import validate_request_schema
@@ -9,12 +8,14 @@ from app.todo.models.todo import Todo
 
 todo = Blueprint('todo', __name__, url_prefix='/todo')
 
+
 @todo.route('/', methods=['GET'])
 def index():
     return ApiResult(
         payload={},
         message='Hello from Python.. hzzzzz..'
     )
+
 
 @todo.route('/', methods=['POST'])
 @validate_request_schema(schema=NewTodoSchema)
