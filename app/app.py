@@ -43,7 +43,7 @@ def configure_db(app):
 
 def configure_blueprints(app):
     """Register all blueprints with the app"""
-    from .todo import todo
+    from .apis.todo import todo
     for bp in [todo]:
         app.register_blueprint(bp)
 
