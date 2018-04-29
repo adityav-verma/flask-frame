@@ -24,9 +24,6 @@ class BaseModel:
             raise E
 
     def delete(self):
-        try:
-            db.session.delete(self)
-            db.session.commit()
-        except Exception as E:
-            db.session.rollback()
-            raise E
+        self.deleted = True
+        self.deleted_at = datetime.utcnow()
+        self.commit()
