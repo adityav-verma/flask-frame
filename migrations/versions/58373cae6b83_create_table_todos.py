@@ -1,8 +1,8 @@
-"""empty message
+"""Create table todos
 
-Revision ID: 7d56787197d9
+Revision ID: 58373cae6b83
 Revises:
-Create Date: 2018-01-25 13:55:11.148196
+Create Date: 2018-04-29 11:38:44.734928
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7d56787197d9'
+revision = '58373cae6b83'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,6 +23,10 @@ def upgrade():
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('title', sa.String(length=500), nullable=False),
         sa.Column('content', sa.Text(), nullable=True),
+        sa.Column('deleted', sa.Boolean(), nullable=False),
+        sa.Column('created_at', sa.DateTime(), nullable=False),
+        sa.Column('updated_at', sa.DateTime(), nullable=False),
+        sa.Column('deleted_at', sa.DateTime(), nullable=True),
         sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
