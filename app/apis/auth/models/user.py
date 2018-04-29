@@ -1,7 +1,5 @@
 from flask import current_app
-from base64 import b64encode
-from os import urandom
-
+from werkzeug.security import gen_salt
 
 from app.extensions import db, bcrypt
 from app.utilities.models import BaseModel
@@ -23,14 +21,6 @@ class User(db.Model, BaseModel):
         return bcrypt.check_password_hash(self.password, candidate_salt)
 
     @classmethod
-    def _generate_salt(cls, len=20):
-        """
-        Generate a salt to be used along with password to improve security
-        """
-        random_bytes = urandom(len)
-        return b64encode(random_bytes).decode('utf-8')
-
-    @classmethod
     def _generate_password(cls, password, salt):
         """
         Hash password using bcrypt. A standard defined.
@@ -43,7 +33,7 @@ class User(db.Model, BaseModel):
     @classmethod
     def add(cls, username, password, email):
         """Create a user"""
-        salt = cls._generate_salt()
+        salt = gen_salt(50)
         user = cls(
             username=username, password=cls._generate_password(password, salt),
             email=email, salt=salt
