@@ -1,5 +1,4 @@
 from .configs import DefaultConfig
-from .extensions import db, migrate, bcrypt
 from .api_flask import ApiFlask
 from .exceptions import ApiException
 from .utilities import ApiResult
@@ -37,9 +36,11 @@ def configure_app(app, config=None):
 
 def configure_extensions(app):
     """Configure SQLAlchemy"""
+    from .extensions import db, migrate, bcrypt, oauth
     db.init_app(app)
     migrate.init_app(app, db)
     bcrypt.init_app(app)
+    oauth.init_app(app)
 
 
 def configure_blueprints(app):
