@@ -2,8 +2,8 @@ from flask import Blueprint, request
 
 from app.utilities import ApiResult
 from app.utilities.schema_validators import validate_request_schema
-from app.todo.schemas import NewTodoSchema
-from app.todo.models.todo import Todo
+from .schemas import NewTodoSchema
+from .models.todo import Todo
 
 
 todo = Blueprint('todo', __name__, url_prefix='/todo')
