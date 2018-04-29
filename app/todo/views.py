@@ -1,8 +1,11 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 import json
 
 from app.utilities import ApiResult
+from app.utilities.schema_validators import validate_request_schema
+from app.todo.schemas import NewTodoSchema
 from app.todo.models.todo import Todo
+
 
 todo = Blueprint('todo', __name__, url_prefix='/todo')
 
@@ -13,10 +16,11 @@ def index():
         message='Hello from Python.. hzzzzz..'
     )
 
-
 @todo.route('/', methods=['POST'])
+@validate_request_schema(schema=NewTodoSchema)
 def new():
-    todo = Todo.add('Yo!', 'Jessi Pinkman')
+    data = request.json
+    todo = Todo.add(data['title'], data['content'])
     return ApiResult(
         payload=todo.to_dict(),
         message='Todo created!',
