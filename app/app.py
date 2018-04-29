@@ -2,6 +2,7 @@ from .configs import DefaultConfig
 from .extensions import db, migrate
 from .api_flask import ApiFlask
 from .exceptions import ApiException
+from .utilities import ApiResult
 
 
 # For import *
@@ -43,11 +44,22 @@ def configure_db(app):
 def configure_blueprints(app):
     """Register all blueprints with the app"""
     from .todo import todo
-    from .auth import auth
-    for bp in [todo, auth]:
+    for bp in [todo]:
         app.register_blueprint(bp)
 
 
 def configure_error_handlers(app):
     """Configure automatic exception handling"""
     app.register_error_handler(ApiException, lambda err: err.to_result())
+    app.register_error_handler(
+        Exception, lambda err: ApiResult({}, str(err), 500)
+    )
+    # Jsonschema error handlers start block
+    from jsonschema.exceptions import ValidationError, SchemaError
+    app.register_error_handler(
+        ValidationError, lambda err: ApiResult({}, str(err), 400)
+    )
+    app.register_error_handler(
+        SchemaError, lambda err: ApiResult({}, str(err), 400)
+    )
+    # Jsonschema error handlers end block

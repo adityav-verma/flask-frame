@@ -1,2 +1,6 @@
-from .views import todo
-from .models.todo import Todo
+from .views import todo  # noqa
+from .models.todo import Todo  # noqa
+
+
+todo.__doc__
+Todo.__doc__
