@@ -23,6 +23,7 @@ class BaseConfig:
 
     # Auth Configs
     BCRYPT_ROUNDS = 12
+    OAUTH2_PROVIDER_TOKEN_EXPIRES_IN = 3600
 
 class DefaultConfig(BaseConfig):
     DEBUG = True
