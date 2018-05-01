@@ -1,10 +1,11 @@
-from flask import Blueprint
+from flask import Blueprint, request
 
 from app.extensions import oauth
 from app.utilities.schema_validators import validate_request_schema
 from app.utilities.api_result import ApiResult
 
 from .schemas import LoginSchema
+from .services.user_auth_service import UserAuthService
 
 auth = Blueprint('auth', __name__, url_prefix='/api/auth')
 
@@ -21,4 +22,5 @@ def access_token():
 def login():
     """Log a user in using oauth/token"""
     # Use Oauth library to validate and give a token to the user
-    return ApiResult(payload={}, message="Valid typ")
+    data = request.json
+    return UserAuthService().login_user(data['username'], data['password'])
