@@ -8,7 +8,8 @@ import uuid
 class Client(db.Model, BaseModel):
     __tablename__ = 'clients'
     name = db.Column(db.String(50), nullable=False)
-    id = db.Column(db.String(100), default=uuid.uuid4, primary_key=True)
+    id = db.Column(db.Integer(), autoincrement=True)
+    client_id = db.Column(db.String(100), default=uuid.uuid4, primary_key=True)
     secret = db.Column(db.String(50), nullable=False, index=True, unique=True)
     _is_confidential = db.Column(db.Boolean, default=True, nullable=False)
     _allowed_grant_types = db.Column(db.Text, nullable=False)

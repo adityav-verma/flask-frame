@@ -5,7 +5,7 @@ from app.utilities.models import BaseModel
 class Grant(db.Model, BaseModel):
     __tablename__ = 'grants'
     client_id = db.Column(
-        db.String(100), db.ForeignKey('clients.id'), nullable=False
+        db.String(100), db.ForeignKey('clients.client_id'), nullable=False
     )
     client = db.relationship('Client')
     code = db.Column(db.String(255), index=True, nullable=False)

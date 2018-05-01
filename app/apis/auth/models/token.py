@@ -5,7 +5,7 @@ from app.utilities.models import BaseModel
 class Token(db.Model, BaseModel):
     __tablename__ = 'tokens'
     client_id = db.Column(
-        db.String(100), db.ForeignKey('clients.id'), nullable=False
+        db.String(100), db.ForeignKey('clients.client_id'), nullable=False
     )
     client = db.relationship('Client')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
