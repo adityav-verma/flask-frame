@@ -17,13 +17,28 @@ def access_token():
     return None
 
 
+@auth.route('/oauth/revoke', methods=['POST'])
+@oauth.revoke_handler
+def revoke_token():
+    """To revoke Oauth Tokens"""
+    return None
+
+
 @auth.route('/login', methods=['POST'])
 @validate_request_schema(schema=LoginSchema)
 def login():
     """Log a user in using oauth/token"""
     # Use Oauth library to validate and give a token to the user
     credentials = request.json
-    auth = UserAuthService().login_user(
+    auth = UserAuthService().login(
         credentials['username'], credentials['password']
     )
+    return ApiResult(payload=auth['payload'], status=auth['status_code'])
+
+
+@auth.route('/logout', methods=['DELETE'])
+def logout():
+    """Log a user out using oauth/revoke"""
+    token = request.headers.get('Authorization').split(' ')[1]
+    auth = UserAuthService().logout(token)
     return ApiResult(payload=auth['payload'], status=auth['status_code'])
