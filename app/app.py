@@ -1,5 +1,4 @@
 from .configs import DefaultConfig
-from .extensions import db, migrate
 from .api_flask import ApiFlask
 from .exceptions import ApiException
 from .utilities import ApiResult
@@ -18,7 +17,7 @@ def create_app(config=None, app_name=None):
 
     configure_app(app, config)
     configure_blueprints(app)
-    configure_db(app)
+    configure_extensions(app)
     configure_error_handlers(app)
 
     return app
@@ -35,16 +34,20 @@ def configure_app(app, config=None):
         app.config.from_object(config)
 
 
-def configure_db(app):
+def configure_extensions(app):
     """Configure SQLAlchemy"""
+    from .extensions import db, migrate, bcrypt, oauth
     db.init_app(app)
     migrate.init_app(app, db)
+    bcrypt.init_app(app)
+    oauth.init_app(app)
 
 
 def configure_blueprints(app):
     """Register all blueprints with the app"""
     from .apis.todo import todo
-    for bp in [todo]:
+    from .apis.auth import auth
+    for bp in [todo, auth]:
         app.register_blueprint(bp)
 
 

@@ -19,6 +19,7 @@ class BaseModel:
         try:
             db.session.add(self)
             db.session.commit()
+            return self
         except Exception as E:
             db.session.rollback()
             raise E
