@@ -20,6 +20,13 @@ class User(db.Model, BaseModel):
         candidate_salt = candidate + self.salt
         return bcrypt.check_password_hash(self.password, candidate_salt)
 
+    def to_dict(self):
+        """Return a dictionary representation of the User object"""
+        return {
+            'username': self.username,
+            'email': self.email
+        }
+
     @classmethod
     def _generate_password(cls, password, salt):
         """
