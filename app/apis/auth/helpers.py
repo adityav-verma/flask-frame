@@ -14,7 +14,7 @@ def get_current_user():
 
 @oauth.clientgetter
 def load_client(id):
-    return Client.query.get(id)
+    return Client.query.filter(Client.client_id == id).first()
 
 
 @oauth.grantgetter

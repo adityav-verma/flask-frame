@@ -5,5 +5,5 @@ class BaseService:
     def make_request(self, method, url, payload):
         if method == 'POST':
             return requests.post(
-                url=url, json=payload
+                url=url, data=payload
             )

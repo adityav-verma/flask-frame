@@ -22,5 +22,8 @@ def access_token():
 def login():
     """Log a user in using oauth/token"""
     # Use Oauth library to validate and give a token to the user
-    data = request.json
-    return UserAuthService().login_user(data['username'], data['password'])
+    credentials = request.json
+    auth = UserAuthService().login_user(
+        credentials['username'], credentials['password']
+    )
+    return ApiResult(payload=auth['payload'], status=auth['status_code'])
