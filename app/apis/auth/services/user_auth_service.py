@@ -38,11 +38,11 @@ class UserAuthService(BaseService):
             'POST', 'http://web:80/api/auth/oauth/token', payload
         )
         data = {
-            'status_code': 400,
+            'status_code': 200,
             'payload': response.json()
         }
-        if response.status_code == requests.codes.ok:
-            data['status_code'] = 200
+        if response.status_code != requests.codes.ok:
+            data['status_code'] = response.status_code
         return data
 
     def logout(self, token):
@@ -56,9 +56,9 @@ class UserAuthService(BaseService):
             'POST', 'http://web:80/api/auth/oauth/revoke', payload
         )
         data = {
-            'status_code': 400,
+            'status_code': 200,
             'payload': {}
         }
-        if response.status_code == requests.codes.ok:
-            data['status_code'] = 200
+        if response.status_code != requests.codes.ok:
+            data['status_code'] = response.status_code
         return data
