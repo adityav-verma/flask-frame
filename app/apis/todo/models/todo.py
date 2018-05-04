@@ -20,6 +20,14 @@ class Todo(db.Model, BaseModel):
         }
 
     @classmethod
-    def add(cls, title, content):
-        todo = cls(title=title, content=content)
+    def add(cls, title, content, user):
+        """Add a Todo for a user
+        Args:
+            - title: str
+            - content: str
+            - user: User obj
+        Returns:
+            - Todo obj
+        """
+        todo = cls(title=title, content=content, user=user)
         return todo.commit()
