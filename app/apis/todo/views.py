@@ -16,7 +16,7 @@ todo = Blueprint('todo', __name__, url_prefix='/api/todo')
 def index():
     user = request.oauth.user
     return ApiResult(
-        payload={[todo.to_dict() for todo in user.todos]},
+        payload={'todos': [todo.to_dict() for todo in user.todos]},
         message='Listing all todos'
     )
 
