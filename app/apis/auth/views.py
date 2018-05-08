@@ -4,7 +4,8 @@ from app.extensions import oauth
 from app.utilities.schema_validators import validate_request_schema
 from app.utilities.api_result import ApiResult
 
-from .schemas import LoginSchema
+from .models.user import User
+from .schemas import LoginSchema, RegisterSchema
 from .services.user_auth_service import UserAuthService
 
 auth = Blueprint('auth', __name__, url_prefix='/api/auth')
@@ -42,3 +43,14 @@ def logout():
     token = request.headers.get('Authorization').split(' ')[1]
     auth = UserAuthService().logout(token)
     return ApiResult(payload=auth['payload'], status=auth['status_code'])
+
+
+@auth.route('/register', methods=['POST'])
+@validate_request_schema(schema=RegisterSchema)
+def register():
+    """Log a user out using oauth/revoke"""
+    data = request.json
+    user = User.add(
+        data['username'], data['password'], data.get('email', None)
+    )
+    return ApiResult(payload=user.to_dict(), message='User added', status=201)
