@@ -9,7 +9,7 @@ class User(db.Model, BaseModel):
     __tablename__ = 'users'
 
     username = db.Column(db.String(100), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=True)
+    email = db.Column(db.String(255), nullable=True, unique=True)
     password = db.Column(db.String(255), nullable=False)
     salt = db.Column(db.String(100), nullable=False)
 
