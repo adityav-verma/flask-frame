@@ -33,7 +33,9 @@ def setup_db(request, app):
         )
     )
     db.create_all()
+
     def teardown():
+        db.session.commit()
         db.drop_all()
 
     request.addfinalizer(teardown)
