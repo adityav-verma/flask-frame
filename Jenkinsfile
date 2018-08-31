@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh 'fab polish:ci'
             }
-        },
+        }
         stage('test') {
             steps {
                 sh 'pytest tests -svv'
