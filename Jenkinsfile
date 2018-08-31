@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'coderadi/flask-frame' } }
+    agent { docker { build 'coderadi/flask-frame' } }
     stages {
         stage('build') {
             steps {
