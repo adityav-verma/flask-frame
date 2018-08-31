@@ -1,9 +1,9 @@
 pipeline {
-    agent { docker { image 'python:3.5.1' } }
+    agent { docker { image 'coderadi/flask-frame' } }
     stages {
         stage('build') {
             steps {
-                sh 'python --version'
+                sh 'fabpolish:ci'
             }
         }
     }
