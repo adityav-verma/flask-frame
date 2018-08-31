@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'fabpolish:ci'
+                sh 'fab polish:ci'
             }
         }
     }
