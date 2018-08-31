@@ -6,3 +6,4 @@ jsonschema==2.6.0
 https://github.com/coderadi/FabPolish/archive/v1.2.2.zip
 Flask-OAuthlib==0.9.4
 Flask-Bcrypt==0.7.1
+pytest==3.5.1

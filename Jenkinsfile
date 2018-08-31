@@ -8,6 +8,7 @@ pipeline {
         }
         stage('test') {
             steps {
+                sh 'cp app/configs.py.sample app/configs.py'
                 sh 'pytest tests -svv'
             }
         }
