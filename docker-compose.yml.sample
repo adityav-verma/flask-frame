@@ -15,5 +15,5 @@ services:
       image: mysql/mysql-server:5.7
       environment:
         - MYSQL_ALLOW_EMPTY_PASSWORD=true
-        - MYSQL_DATABASE=flask_app
+        - MYSQL_DATABASE=flask_frame
         - MYSQL_ROOT_HOST=%

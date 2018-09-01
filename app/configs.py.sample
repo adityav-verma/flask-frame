@@ -5,6 +5,8 @@ DefaultConfig: development configurations
 TestConfig: testing configurations
 ProdConfig: production related configurations
 """
+
+
 class BaseConfig:
     APP_NAME = 'app'
 
@@ -13,7 +15,7 @@ class BaseConfig:
 
     # SQLAlchemy configs
     DB_HOST = 'mysql'
-    DB_NAME = 'flask_app'
+    DB_NAME = 'flask_frame'
     DB_USER = 'root'
     DB_PASS = ''
     SQLALCHEMY_DATABASE_URI = 'mysql://{}:{}@{}/{}'.format(
@@ -36,6 +38,16 @@ class DefaultConfig(BaseConfig):
 
 class TestConfig(BaseConfig):
     TESTING = True
+    DB_HOST = 'mysql'
+    DB_NAME = 'flask_frame_tests'
+    DB_USER = 'root'
+    DB_PASS = ''
+    SQLALCHEMY_DATABASE_URI = 'mysql://{}:{}@{}/{}'.format(
+        DB_USER, DB_PASS, DB_HOST, DB_NAME
+    )
+    MYSQL_URI = 'mysql://{}:{}@{}'.format(
+        DB_USER, DB_PASS, DB_HOST
+    )
 
 
 class ProdConfig(BaseConfig):
