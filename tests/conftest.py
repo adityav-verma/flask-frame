@@ -37,6 +37,11 @@ def setup_db(request, app):
     def teardown():
         db.session.commit()
         db.drop_all()
+        mysql_engine.execute(
+            'DROP DATABASE {}'.format(
+                app.config.get('DB_NAME')
+            )
+        )
 
     request.addfinalizer(teardown)
     return db
