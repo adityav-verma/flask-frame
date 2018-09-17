@@ -1,10 +1,10 @@
 FROM tiangolo/uwsgi-nginx-flask:python3.6
 
-COPY . /www/app
+COPY . /app
 
-WORKDIR /www/app
+WORKDIR /app
 
-ENV UWSGI_INI /www/app/uwsgi.ini
+ENV UWSGI_INI /app/uwsgi.ini
 
 # Install dependencies
 RUN pip install -r requirements.lock
