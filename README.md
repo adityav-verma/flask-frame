@@ -1,4 +1,4 @@
-# flask-app
+# flask-frame
 A production ready flask setup using `Docker`, `Nginx` and `uWSGI`.
 
 ## Requirements:
