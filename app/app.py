@@ -47,7 +47,8 @@ def configure_blueprints(app):
     """Register all blueprints with the app"""
     from .apis.todo import todo
     from .apis.auth import auth
-    for bp in [todo, auth]:
+    from .apis.status import status
+    for bp in [todo, auth, status]:
         app.register_blueprint(bp)
 
 
