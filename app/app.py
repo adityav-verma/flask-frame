@@ -43,11 +43,19 @@ def configure_extensions(app):
     oauth.init_app(app)
 
 
-def configure_blueprints(app):
+def configure_blueprints(app, oauth=False, jwt_auth=False):
     """Register all blueprints with the app"""
+    enabled_bps = []
+    if all([oauth, jwt_auth]):
+        raise Exception('Cannot enable all authenticaton mechanisms together')
+    if oauth:
+        from .apis.auth import auth
+        enabled_bps.append(auth)
+
     from .apis.todo import todo
-    from .apis.auth import auth
-    for bp in [todo, auth]:
+    enabled_bps.append(todo)
+
+    for bp in enabled_bps:
         app.register_blueprint(bp)
 
 
